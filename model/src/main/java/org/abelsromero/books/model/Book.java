@@ -16,16 +16,9 @@ import java.util.List;
 @RegisterForReflection
 public class Book {
 
-    // NOTE: must use ObjectId for automatic mapping and have AllArgs, Getters & Setters
-//    String id;
     ObjectId id;
     String title;
     Integer year;
     Genre genre;
-//    Optional<String> editor;
-//    Optional<String> summary;
 
-//    List<Author> authors;
-
-//    Map<String, String> metadata;
 }
