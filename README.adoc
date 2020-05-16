@@ -1,0 +1,70 @@
+= quarkus-command-demo project
+
+This project uses Quarkus, the Supersonic Subatomic Java Framework.
+
+If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+
+== Running the application in dev mode
+
+Since quarkus plugin is not in the parent, to run dev mode from root use the full qualified name.
+
+ $ mvn io.quarkus:quarkus-maven-plugin:dev -am -pl quarkus-command
+
+== Packaging and running the application
+
+The application can be packaged using `./mvnw package`.
+It produces the `quarkus-command-1.0.0-SNAPSHOT-runner.jar` file in the `/target` directory.
+Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/lib` directory.
+
+The application is now runnable using `java -jar target/quarkus-command-1.0.0-SNAPSHOT-runner.jar`.
+
+== Creating a native executable
+
+You can create a native executable using: `./mvnw package -Pnative`.
+
+Or, if you don't have GraalVM installed, you can run the native executable build in a container using: `./mvnw package -Pnative -Dquarkus.native.container-build=true`.
+
+You can then execute your native executable with: `./target/quarkus-command-1.0.0-SNAPSHOT-runner`
+
+If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
+
+== Lessons learnt
+
+* Need to add `@RegisterForReflection` to pojos for automatic serialization in native.
+
+=== Metrics (smallrye)
+
+ + Easy to setup with OOTB annotations for methods
+ + OOTB metrics include Memory
+ + `@Timed` returns percentiles OOTB
+ - Format not compatible with SpringBoot
+ + Using `quarkus:dev` for metrics testing is great :)
+ + Metrics work OOTB on "command-mode" without any extra configuration
+ - Certain parameters can only be set during build time for native images (https://github.com/smallrye/smallrye-metrics/issues/320).
+
+
+.example
+----
+application_counter_total 1.0
+application_timer_fifteen_min_rate_per_second 0.0
+application_timer_five_min_rate_per_second 0.0
+application_timer_max_seconds 0.101549082
+application_timer_mean_seconds 0.101549082
+application_timer_min_seconds 0.101549082
+application_timer_one_min_rate_per_second 0.0
+application_timer_rate_per_second 0.1466953074017616
+application_timer_seconds_count 1.0
+application_timer_seconds{quantile="0.5"} 0.101549082
+application_timer_seconds{quantile="0.75"} 0.101549082
+application_timer_seconds{quantile="0.95"} 0.101549082
+application_timer_seconds{quantile="0.98"} 0.101549082
+application_timer_seconds{quantile="0.99"} 0.101549082
+application_timer_seconds{quantile="0.999"} 0.101549082
+application_timer_stddev_seconds 0.0
+----
+
+Some differences with SpringBoot
+
+* Metrics are created on server start, so no need to make a first call to validate if they are set.
+* Allows metricating methods called from the same class (can be private methods!!)
+

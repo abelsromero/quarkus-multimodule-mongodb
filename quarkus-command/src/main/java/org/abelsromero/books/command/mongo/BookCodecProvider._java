@@ -1,0 +1,19 @@
+package org.abelsromero.books.command.mongo;
+
+//import org.abelsromero.books.model.Book;
+//import org.bson.codecs.Codec;
+//import org.bson.codecs.configuration.CodecProvider;
+//import org.bson.codecs.configuration.CodecRegistry;
+
+// quarkus requires a provider to atomatically register a coded
+//public class BookCodecProvider implements CodecProvider {
+//
+//    @Override
+//    public <T> Codec<T> get(Class<T> clazz, CodecRegistry registry) {
+//        if (clazz == Book.class) {
+//            return (Codec<T>) new BookCodec();
+//        }
+//        return null;
+//    }
+//
+//}

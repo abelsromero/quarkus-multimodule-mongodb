@@ -1,0 +1,48 @@
+package org.abelsromero.books.command.mongo;
+
+//import com.mongodb.MongoClientSettings;
+//import org.bson.BsonReader;
+//import org.bson.BsonWriter;
+//import org.bson.Document;
+//import org.bson.codecs.Codec;
+//import org.bson.codecs.DecoderContext;
+//import org.bson.codecs.EncoderContext;
+//
+//import java.util.Optional;
+
+/*
+public class OptionalCodec implements Codec<Optional> {
+
+    private final Codec<Document> documentCodec;
+
+    public OptionalCodec() {
+        this.documentCodec = MongoClientSettings.getDefaultCodecRegistry().get(Document.class);
+
+    }
+
+    @Override
+    public Optional decode(BsonReader reader, DecoderContext decoderContext) {
+        // TODO need to check type and then read accordingly
+//        reader.readDateTime()
+//        Document document = documentCodec.decode(reader, decoderContext);
+        return Optional.empty();
+    }
+
+    @Override
+    public void encode(BsonWriter writer, Optional optional, EncoderContext encoderContext) {
+        if (optional.isEmpty()) {
+            writer.writeNull();
+        } else {
+            final Object optionalValue = optional.get();
+            final Codec codec = MongoClientSettings.getDefaultCodecRegistry().get(optional.get().getClass());
+            codec.encode(writer, optionalValue, encoderContext);
+        }
+    }
+
+    @Override
+    public Class<Optional> getEncoderClass() {
+        return Optional.class;
+    }
+
+}
+*/

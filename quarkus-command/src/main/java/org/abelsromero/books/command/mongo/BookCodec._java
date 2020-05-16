@@ -1,0 +1,53 @@
+package org.abelsromero.books.command.mongo;
+
+import com.mongodb.MongoClientSettings;
+import org.abelsromero.books.model.Book;
+import org.bson.BsonReader;
+import org.bson.BsonWriter;
+import org.bson.Document;
+import org.bson.codecs.Codec;
+import org.bson.codecs.DecoderContext;
+import org.bson.codecs.EncoderContext;
+import org.bson.types.ObjectId;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
+/*
+public class BookCodec implements Codec<Book> {
+
+    final AtomicInteger counter = new AtomicInteger();
+
+    @Override
+    public Book decode(BsonReader bsonReader, DecoderContext decoderContext) {
+        bsonReader.readStartDocument();
+
+        ObjectId objectId = bsonReader.readObjectId();
+        String title = bsonReader.readString();
+        int i = bsonReader.readInt32();
+
+        bsonReader.readEndDocument();
+
+        return Book.builder()
+//            .id(objectId.toString())
+            .title(title)
+            .build();
+    }
+
+    @Override
+    public void encode(BsonWriter bsonWriter, Book book, EncoderContext encoderContext) {
+        var documentCodec = MongoClientSettings.getDefaultCodecRegistry().get(Document.class);
+        bsonWriter.writeStartDocument();
+        // No nee
+//        bsonWriter.writeObjectId(new ObjectId());
+        bsonWriter.writeString("title", book.getTitle());
+        // NOTE:
+        bsonWriter.writeInt32("i", counter.incrementAndGet());
+        bsonWriter.writeEndDocument();
+    }
+
+    @Override
+    public Class<Book> getEncoderClass() {
+        return Book.class;
+    }
+}
+*/
